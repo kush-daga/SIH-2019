@@ -1,18 +1,18 @@
 const mongoose = require("mongoose");
 
-const Bod = new mongoose.Schema({
-  userId: {
-    type: String,
-    default: ""
+const BodSchema = new mongoose.Schema({
+  value: {
+    type: Number,
+    default: 0
   },
   timestamp: {
     type: Date,
     default: Date.now()
   },
-  isDeleted: {
-    type: Boolean,
-    default: false
+  stp: {
+    type: String,
+    default: "thapar"
   }
 });
 
-module.exports = mongoose.model("UserSession", UserSessionSchema);
+module.exports = mongoose.model("Bod", BodSchema);

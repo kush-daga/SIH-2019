@@ -276,11 +276,14 @@ class MapEasy extends React.Component {
     ));
     return (
       <div className="cf mt3">
-        <div className="fn fl-ns w-50-ns pr4-ns">
+        <div className="fn fl-ns w-25-ns pl2 pr5">
+          <SidePanel />
+        </div>
+        <div className="fn fl-ns w-60-ns pr4-ns">
           <LeafletMap
             style={{
               width: "100%",
-              height: "600px"
+              height: "500px"
             }}
             center={[25.609575, 85.1238191]}
             zoom={6}
@@ -301,10 +304,6 @@ class MapEasy extends React.Component {
             {LeafletMarkers}
             {/* <GeoJSON data={data} style={this.getStyle} /> */}
           </LeafletMap>
-        </div>
-        <div className="fn fl-ns w-25-ns">Yoo</div>
-        <div className="fn fl-ns w-25-ns pr5">
-          <SidePanel />
         </div>
       </div>
     );
