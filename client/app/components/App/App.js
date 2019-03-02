@@ -1,18 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 
 const App = ({ children }) => (
-  <>
+  <div>
     <Header />
 
-    <main>
-      {children}
-    </main>
+    <main>{children}</main>
 
-    <Footer />
-  </>
+    {/* <Footer /> */}
+  </div>
 );
 
 export default App;
