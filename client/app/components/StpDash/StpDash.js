@@ -8,10 +8,9 @@ export default class StpDash extends Component {
 
     this.state = {
       isLoading: false,
-      overview: false,
+      overview: true,
       charts: false,
       download: false,
-      home: true,
       issue: false
     };
   }
@@ -23,8 +22,7 @@ export default class StpDash extends Component {
         overview: false,
         charts: true,
         download: false,
-        issue: false,
-        home: false
+        issue: false
       });
     }
   }
@@ -35,8 +33,7 @@ export default class StpDash extends Component {
         overview: true,
         charts: false,
         download: false,
-        issue: false,
-        home: false
+        issue: false
       });
     }
   }
@@ -47,8 +44,7 @@ export default class StpDash extends Component {
         overview: false,
         charts: false,
         download: true,
-        issue: false,
-        home: false
+        issue: false
       });
     }
   }
@@ -59,7 +55,7 @@ export default class StpDash extends Component {
         overview: false,
         charts: false,
         download: false,
-        home: false,
+
         issue: true
       });
     }
@@ -75,12 +71,7 @@ export default class StpDash extends Component {
             handleClickIssues={this.handleClickIssues.bind(this)}
           />
         </div>
-        {this.state.home ? (
-          <div className="fn fl-ns w-75-ns">Yooooo</div>
-        ) : null}
-        {this.state.overview ? (
-          <div className="fn fl-ns w-75-ns">overview</div>
-        ) : null}
+        {this.state.overview ? <StpOverview /> : null}
         {this.state.charts ? (
           <div className="fn fl-ns w-75-ns">charts</div>
         ) : null}

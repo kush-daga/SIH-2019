@@ -13,7 +13,7 @@ export default class index extends Component {
             <a
               className="f6 f5-ns fw6 lh-title white mv2 f5 no-underline black bg-animate hover-bg-black hover-white inline-flex items-center"
               onClick={this.props.handleClickOverview}>
-              Overview
+              Status
             </a>
             <h2 className="f6 fw4 mt0 mb0 white-60">
               View all the stats in one place

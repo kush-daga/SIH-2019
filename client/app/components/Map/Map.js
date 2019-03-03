@@ -6,255 +6,266 @@ import {
   Popup,
   GeoJSON
 } from "react-leaflet";
+import { iconRed } from "./icon-red";
+import ReactAutoScroll from "react-to-target-auto-scroll";
+import Overview from "./Overview";
+// import Chart from "./Chart";
+import Demo from "./demo";
+import Issue from "./Issues";
 // import leaflet from "leaflet/dist/leaflet.css";
 import { Link } from "react-router-dom";
 import SidePanel from "../SidePanel";
-const data = {
-  type: "FeatureCollection",
-  features: [
-    {
-      type: "Feature",
-      id: "01",
-      properties: { name: "Alabama", density: 94.65 },
-      geometry: {
-        type: "Polygon",
-        coordinates: [
-          [
-            [-87.359296, 35.00118],
-            [-85.606675, 34.984749],
-            [-85.431413, 34.124869],
-            [-85.184951, 32.859696],
-            [-85.069935, 32.580372],
-            [-84.960397, 32.421541],
-            [-85.004212, 32.322956],
-            [-84.889196, 32.262709],
-            [-85.058981, 32.13674],
-            [-85.053504, 32.01077],
-            [-85.141136, 31.840985],
-            [-85.042551, 31.539753],
-            [-85.113751, 31.27686],
-            [-85.004212, 31.003013],
-            [-85.497137, 30.997536],
-            [-87.600282, 30.997536],
-            [-87.633143, 30.86609],
-            [-87.408589, 30.674397],
-            [-87.446927, 30.510088],
-            [-87.37025, 30.427934],
-            [-87.518128, 30.280057],
-            [-87.655051, 30.247195],
-            [-87.90699, 30.411504],
-            [-87.934375, 30.657966],
-            [-88.011052, 30.685351],
-            [-88.10416, 30.499135],
-            [-88.137022, 30.318396],
-            [-88.394438, 30.367688],
-            [-88.471115, 31.895754],
-            [-88.241084, 33.796253],
-            [-88.098683, 34.891641],
-            [-88.202745, 34.995703],
-            [-87.359296, 35.00118]
-          ]
-        ]
-      }
-    }
-  ]
-};
+
 const markers = [
   {
-    name: " Karmalichak ",
-    latlng: [25.609575, 85.1238191]
+    name: "Mahetsha",
+    state: "West Bengal ",
+    latlng: [22.5, 88.25],
+    status: "No"
   },
   {
-    name: " Pahari ",
-    latlng: [25.609575, 85.1238191]
+    name: "Cossipore",
+    state: "West Bengal ",
+    latlng: [22.64, 88.37],
+    status: "Yes"
   },
   {
-    name: " Saidpur STP Old ",
-    latlng: [25.609575, 85.1238191]
+    name: "Kalyani",
+    state: "West Bengal",
+    latlng: [22.97, 88.43],
+    status: "Yes"
   },
   {
-    name: " Saidpur STP ",
-    latlng: [25.609575, 85.1238191]
+    name: "Bandipur",
+    state: "West Bengal",
+    latlng: [22.84, 88.15],
+    status: "Yes"
   },
   {
-    name: " Okhla Phase-I ",
-    latlng: [28.5246, 77.2793]
+    name: "Karmalichak",
+    state: " Bihar ",
+    latlng: [25.609575, 85.1238191],
+    status: "Yes"
   },
   {
-    name: " Keshopur Nilothi-I ",
-    latlng: [28.6572914, 77.2272603]
+    name: "Hajipur",
+    state: "Bihar",
+    latlng: [25.685839, 85.214591],
+    status: "No"
   },
   {
-    name: " Keshopur Nilothi-II ",
-    latlng: [28.6572914, 77.2272603]
+    name: "Barth",
+    state: "Bihar",
+    latlng: [25.477585, 85.709094],
+    status: "No"
   },
   {
-    name: " Okhla Phase-II ",
-    latlng: [28.5246, 77.2793]
+    name: "Nadabwip",
+    state: "West Bengal",
+    latlng: [23.4, 88.36],
+    status: "Yes"
   },
   {
-    name: " Vasant Kunj-I ",
-    latlng: [28.6572914, 77.2272603]
+    name: "Sultanganj",
+    state: "Bihar",
+    latlng: [25.24, 86.740439],
+    status: "No"
   },
   {
-    name: " STP Kondli phase-I ",
-    latlng: [28.6572914, 77.2272603]
+    name: "Bhagalpur",
+    state: "Bihar",
+    latlng: [25.2499, 86.89200000000001],
+    status: "No"
   },
   {
-    name: " STP Kondli Old Phase-II ",
-    latlng: [28.6572914, 77.2272603]
+    name: "Mirzapur",
+    state: "Uttar Pradesh",
+    latlng: [25.146134600000003, 82.5689952],
+    status: "Yes"
   },
   {
-    name: " Rithla Old ",
-    latlng: [28.6572914, 77.2272603]
+    name: "Ramnagar",
+    state: "Uttar Pradesh",
+    latlng: [25.2764, 83.023823],
+    status: "No"
   },
   {
-    name: " Keshopur Nilothi-III ",
-    latlng: [28.6572914, 77.2272603]
+    name: "Allahabad",
+    state: "Uttar Pradesh",
+    latlng: [25.4381302, 81.8338],
+    status: "Yes"
   },
   {
-    name: " Okhla Phase-III ",
-    latlng: [28.5246, 77.2793]
-  },
-  { name: " Okhla Pase-IV ", latlng: [28.5246, 77.2793] },
-  {
-    name: " Vasant Kunj-II ",
-    latlng: [28.6572914, 77.2272603]
+    name: "Berhampore",
+    state: "West Bengal",
+    latlng: [24.1, 88.25],
+    status: "Yes"
   },
   {
-    name: " Vasant Kunj- III ",
-    latlng: [28.6572914, 77.2272603]
+    name: "Jagaddal",
+    state: "West Bengal",
+    latlng: [22.88, 88.42],
+    status: "No"
   },
   {
-    name: " Dr. Sen Nursing Home Nalla ",
-    latlng: [28.6572914, 77.2272603]
+    name: "Joshimath",
+    state: "Uttarakhand",
+    latlng: [30.55, 79.56],
+    status: "No"
   },
   {
-    name: " Delhi Gate Nalla ",
-    latlng: [28.6572914, 77.2272603]
+    name: "Chamoli",
+    state: "Uttarakhand",
+    latlng: [30.4, 79.31],
+    status: "No"
   },
   {
-    name: " Yamunavihar Phase-I ",
-    latlng: [28.6572914, 77.2272603]
+    name: "Karnaprayag",
+    state: "Uttarakhand",
+    latlng: [30.25, 79.21],
+    status: "No"
   },
   {
-    name: " coronation Pillar-II ",
-    latlng: [28.6572914, 77.2272603]
+    name: "Rudraprayag",
+    state: "Uttarakhand",
+    latlng: [30.28, 78.98],
+    status: "No"
   },
   {
-    name: " STP Papankalla ",
-    latlng: [28.6572914, 77.2272603]
+    name: "Varanasi",
+    state: "Uttar Pradesh",
+    latlng: [25.3356491, 83.007],
+    status: "Yes"
   },
   {
-    name: " STP Kondli Phase-III ",
-    latlng: [28.6572914, 77.2272603]
+    name: "Sultanpur",
+    state: "Uttar Pradesh",
+    latlng: [26.2588602, 82.07168929999999],
+    status: "Yes"
   },
   {
-    name: " Okhla Phase-V ",
-    latlng: [28.5246, 77.2793]
+    name: "Gangaghat",
+    state: "Uttar Pradesh",
+    latlng: [26.476219, 80.382149],
+    status: "No"
   },
   {
-    name: " Narela-I ",
-    latlng: [28.6572914, 77.2272603]
+    name: "Kirtinagar",
+    state: "Uttarakhand",
+    latlng: [30.21, 78.74],
+    status: "No"
   },
   {
-    name: " STP Nazafgarh ",
-    latlng: [28.609013, 76.985453]
+    name: "Sector 50 Noida",
+    state: "Uttar Pradesh",
+    latlng: [28.5726442, 77.3547609],
+    status: "Yes"
   },
   {
-    name: " Yamunavihar Phase-II ",
-    latlng: [28.6572914, 77.2272603]
+    name: "Ghaziabad",
+    state: "Uttar Pradesh",
+    latlng: [28.6711527, 77.4120356],
+    status: "Yes"
   },
   {
-    name: " Rohini Sec-25 ",
-    latlng: [28.6572914, 77.2272603]
+    name: "Okhla phase 1",
+    state: "Delhi",
+    latlng: [28.52, 77.27],
+    status: "No"
   },
   {
-    name: " Nilothi-IV ",
-    latlng: [28.6572914, 77.2272603]
+    name: "Nazafgarh",
+    state: "Delhi",
+    latlng: [28.6, 76.98],
+    status: "Yes"
   },
   {
-    name: " Mehrauli ",
-    latlng: [28.6572914, 77.2272603]
+    name: "Keshopur",
+    state: "Delhi",
+    latlng: [28.65, 77.22],
+    status: "No"
   },
   {
-    name: " Ghitorni ",
-    latlng: [28.6572914, 77.2272603]
-  },
-  {
-    name: " STP Akshardham ",
-    latlng: [28.6572914, 77.2272603]
-  },
-  {
-    name: " STP Kondli New Phase-IV ",
-    latlng: [28.6572914, 77.2272603]
-  },
-  {
-    name: " Rithla New ",
-    latlng: [28.6572914, 77.2272603]
-  },
-  {
-    name: " Narela-II ",
-    latlng: [28.6572914, 77.2272603]
-  },
-  {
-    name: " Chilla ",
-    latlng: [28.6572914, 77.2272603]
-  },
-  {
-    name: " Okhla Phase-VI ",
-    latlng: [28.5246, 77.2793]
-  },
-  {
-    name: " Timarpur ",
-    latlng: [28.6572914, 77.2272603]
-  },
-  {
-    name: " Bahadurgarh (b) ",
-    latlng: [28.6933239, 76.9332373]
-  },
-  {
-    name: " Bahadurgarh (a) ",
-    latlng: [28.692254, 76.923264]
-  },
-  {
-    name: " Badshapur ",
-    latlng: [28.402836999999998, 77.30856259999999]
-  },
-  {
-    name: " Mirjapur ",
-    latlng: [28.402836999999998, 77.30856259999999]
-  },
-  {
-    name: " Pratapgarh ",
-    latlng: [28.402836999999998, 77.30856259999999]
-  },
-  {
-    name: " Palwal ",
-    latlng: [28.402836999999998, 77.30856259999999]
-  },
-  {
-    name: " Hodal ",
-    latlng: [28.402836999999998, 77.30856259999999]
-  },
-  {
-    name: " Gurgaon-I ",
-    latlng: [28.4646148, 77.0299194]
-  },
-  {
-    name: " Gurgaon-II ",
-    latlng: [28.4646148, 77.0299194]
-  },
-  {
-    name: " Jhajjar ",
-    latlng: [28.606683299999997, 76.65807640000001]
-  },
-  {
-    name: " New Anaj Mandi Indri ",
-    latlng: [29.6803266, 76.98962540000001]
+    name: "Haridwar",
+    state: "Uttarakhand",
+    latlng: [29.945, 78.163],
+    status: "Yes"
   }
 ];
 class MapEasy extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isLoading: false,
+      map: true,
+      overview: false,
+      charts: false,
+      download: false,
+      issue: false
+    };
+    this.myRef = React.createRef();
+  }
+  handleClickChart() {
+    if (!this.state.charts) {
+      this.setState({
+        isLoading: true,
+        overview: false,
+        charts: true,
+        download: false,
+        issue: false,
+        map: false
+      });
+    }
+  }
+  handleClickOverview() {
+    if (!this.state.overview) {
+      this.setState({
+        isLoading: true,
+        overview: true,
+        charts: false,
+        download: false,
+        issue: false,
+        map: false
+      });
+    }
+  }
+  handleClickDownload() {
+    if (!this.state.download) {
+      this.setState({
+        isLoading: true,
+        overview: false,
+        charts: false,
+        download: true,
+        issue: false,
+        map: false
+      });
+    }
+  }
+  handleClickIssues() {
+    if (!this.state.issue) {
+      this.setState({
+        isLoading: true,
+        overview: false,
+        charts: false,
+        download: false,
+        map: false,
+        issue: true
+      });
+    }
+  }
+  handleClickMap() {
+    if (!this.state.map) {
+      this.setState({
+        isLoading: true,
+        overview: false,
+        charts: false,
+        download: false,
+        map: true,
+        issue: false
+      });
+    }
+  }
   getStyle(feature) {
     return {
       fillColor: "#ece7f2",
@@ -265,20 +276,37 @@ class MapEasy extends React.Component {
       fillOpacity: 0.7
     };
   }
+
   render() {
+    var inputProps = {
+      icon: iconRed
+    };
+
     const LeafletMarkers = markers.map(marker => (
-      <Marker position={marker.latlng} key={`marker_${marker.name}`}>
-        <Popup>
-          <span>{marker.name}</span>
-          <Link to="/stp_thapar">Click this</Link>
-        </Popup>
-      </Marker>
+      <div>
+        <Marker
+          position={marker.latlng}
+          key={`marker_${marker.name}`}
+          {...(marker.status === "No" ? { ...inputProps } : {})}>
+          <Popup>
+            <span />
+            <span>{marker.name}</span>
+            <Link to="/stp_dash">Click this</Link>
+          </Popup>
+        </Marker>
+      </div>
     ));
     return (
       <div className="cf mt3">
         <div className="fn fl-ns w-25-ns pl2 pr5">
-          <SidePanel />
+          <SidePanel
+            handleClickChart={this.handleClickChart.bind(this)}
+            handleClickOverview={this.handleClickOverview.bind(this)}
+            handleClickDownload={this.handleClickDownload.bind(this)}
+            handleClickIssues={this.handleClickIssues.bind(this)}
+          />
         </div>
+
         <div className="fn fl-ns w-60-ns pr4-ns">
           <LeafletMap
             style={{
@@ -305,6 +333,39 @@ class MapEasy extends React.Component {
             {/* <GeoJSON data={data} style={this.getStyle} /> */}
           </LeafletMap>
         </div>
+        <div className="fn fl-ns w-10-ns pr4-ns inline-block">
+          <img
+            src="https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png"
+            className="fl"
+          />
+          <p className="flex pl3 mb2">Status: Inactive</p>
+          <img
+            src="https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png"
+            className="fl"
+          />
+          <p className="flex pl3 mb2">Status: Active</p>
+        </div>
+
+        {this.state.overview ? (
+          <div className="fn fr-ns w-75-ns mr4">
+            <Overview />
+          </div>
+        ) : null}
+        {this.state.charts ? (
+          <div>
+            <div className="fn fr-ns w-75-ns mr4 ">
+              <Demo />
+            </div>
+          </div>
+        ) : null}
+        {this.state.issue ? (
+          <div className="fn fr-ns w-75-ns mr4 mt4 mb4">
+            <Issue />
+          </div>
+        ) : null}
+        {this.state.download ? (
+          <div className="fn fl-ns w-75-ns"> {/* <Demo /> */}</div>
+        ) : null}
       </div>
     );
   }

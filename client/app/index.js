@@ -18,7 +18,11 @@ import StpDash from "./components/StpDash/StpDash";
 
 render(
   <Router>
-    <div className="bg-light-blue vh-100">
+    <div
+      className="bg-light-blue vh-100"
+      style={{
+        overflow: "auto"
+      }}>
       <App>
         <Switch>
           <Route exact path="/signin" component={SignIn} />
