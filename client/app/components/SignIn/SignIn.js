@@ -16,7 +16,8 @@ class SignIn extends Component {
       signUpFirstName: "",
       signUpLastName: "",
       signUpEmail: "",
-      signUpPassword: ""
+      signUpPassword: "",
+      signInStateOp: false
     };
 
     this.onTextBoxChangeSignInEmail = this.onTextBoxChangeSignInEmail.bind(
@@ -42,6 +43,7 @@ class SignIn extends Component {
     this.onSignUp = this.onSignUp.bind(this);
     this.logout = this.logout.bind(this);
     this.mapRoute = this.mapRoute.bind(this);
+    this.dashRoute = this.dashRoute.bind(this);
   }
 
   componentDidMount() {
@@ -178,7 +180,8 @@ class SignIn extends Component {
               isLoading: false,
               signInEmail: "",
               signInPassword: "",
-              token: json.token
+              token: json.token,
+              signInStateOp: json.op1
             },
             () => {
               // this.props.history.push("map");
@@ -197,6 +200,10 @@ class SignIn extends Component {
   mapRoute() {
     console.log("here");
     this.props.history.push("map");
+  }
+  dashRoute() {
+    console.log("here");
+    this.props.history.push("operator_dash");
   }
   logout() {
     this.setState({
@@ -235,6 +242,7 @@ class SignIn extends Component {
       signInError,
       signInEmail,
       signInPassword,
+      signInStateOp,
       signUpFirstName,
       signUpLastName,
       signUpEmail,
@@ -326,12 +334,21 @@ class SignIn extends Component {
 
     return (
       <div>
-        <p> Go to Map </p>
-        <button onClick={this.mapRoute}>Go</button>
-        <button onClick={this.logout}>Log Out</button>
+        {!this.state.signInStateOp ? (
+          <div>
+            <p> Go to Map </p>
+            <button onClick={this.mapRoute}>Go</button>
+            <button onClick={this.logout}>Log Out</button>
+          </div>
+        ) : (
+          <div>
+            <p>Welcome to the Operator Dashboad</p>
+            <button onClick={this.dashRoute}>Click to proceed</button>
+            <button onClick={this.logout}>Logout</button>
+          </div>
+        )}
       </div>
     );
   }
 }
-
 export default SignIn;

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Header = () => (
   <header>
     <nav className="flex justify-between bg-blue bb b--white-10">
-      <a className="link  flex items-center pa3" href="">
+      <a className="link  flex items-center pa3" href="/map">
         <img
           src="https://nmcg.nic.in/logo/Namami%20Gange%20Logo_English.jpg"
           width={70}

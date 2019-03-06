@@ -143,7 +143,7 @@ module.exports = app => {
         }
 
         //otherwise correct user
-
+        let op = user.Operator;
         userSession = new UserSession();
         userSession.userId = user._id;
         userSession.save((err, doc) => {
@@ -157,7 +157,8 @@ module.exports = app => {
           return res.send({
             success: true,
             message: "Valid sign in",
-            token: doc._id
+            token: doc._id,
+            op1: op
           });
         });
       }

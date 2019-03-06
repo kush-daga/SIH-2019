@@ -7,6 +7,8 @@ import {
   GeoJSON
 } from "react-leaflet";
 import { iconRed } from "./icon-red";
+import { iconGreen } from "./icon-red";
+
 import ReactAutoScroll from "react-to-target-auto-scroll";
 import Overview from "./Overview";
 // import Chart from "./Chart";
@@ -15,6 +17,7 @@ import Issue from "./Issues";
 // import leaflet from "leaflet/dist/leaflet.css";
 import { Link } from "react-router-dom";
 import SidePanel from "../SidePanel";
+import Download from "./download";
 
 const markers = [
   {
@@ -278,8 +281,11 @@ class MapEasy extends React.Component {
   }
 
   render() {
-    var inputProps = {
+    var inputProps1 = {
       icon: iconRed
+    };
+    var inputProps2 = {
+      icon: iconGreen
     };
 
     const LeafletMarkers = markers.map(marker => (
@@ -287,7 +293,9 @@ class MapEasy extends React.Component {
         <Marker
           position={marker.latlng}
           key={`marker_${marker.name}`}
-          {...(marker.status === "No" ? { ...inputProps } : {})}>
+          {...(marker.status === "No"
+            ? { ...inputProps1 }
+            : { ...inputProps2 })}>
           <Popup>
             <span />
             <span>{marker.name}</span>
@@ -340,10 +348,23 @@ class MapEasy extends React.Component {
           />
           <p className="flex pl3 mb2">Status: Inactive</p>
           <img
-            src="https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png"
+            src="https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png"
             className="fl"
           />
-          <p className="flex pl3 mb2">Status: Active</p>
+          <p className="flex pl3 mb2 mt4">Status: Active</p>
+          <article class="mw5 mt5 center bg-white br3 fr">
+            <div className="tc">
+              <h1 className="f4 ">Alert</h1>
+            </div>
+            <p className="lh-copy measure center f6 black-70">
+              Stp thapar has not updated DO since 7 Days
+            </p>
+            <hr className="mw3 bb bw1 b--black-10" />
+            <p className="lh-copy measure center f6 black-70">
+              Stp allahabad has not updated DO since 7 Days
+            </p>
+          </article>
+          {/* to be implemented */}
         </div>
 
         {this.state.overview ? (
@@ -353,7 +374,7 @@ class MapEasy extends React.Component {
         ) : null}
         {this.state.charts ? (
           <div>
-            <div className="fn fr-ns w-75-ns mr4 ">
+            <div className="fn fr-ns w-100-ns mt3 ">
               <Demo />
             </div>
           </div>
@@ -364,7 +385,9 @@ class MapEasy extends React.Component {
           </div>
         ) : null}
         {this.state.download ? (
-          <div className="fn fl-ns w-75-ns"> {/* <Demo /> */}</div>
+          <div className="fn fl-ns w-75-ns">
+            <Download />
+          </div>
         ) : null}
       </div>
     );

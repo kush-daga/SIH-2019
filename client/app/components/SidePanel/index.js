@@ -15,6 +15,7 @@ export default class index extends Component {
               onClick={this.props.handleClickOverview}>
               Status
             </a>
+            <h1 className="f5 fw4 mt0 mb0 white-60">स्थिति</h1>
             <h2 className="f6 fw4 mt0 mb0 white-60">
               View all the stats in one place
             </h2>
@@ -27,6 +28,8 @@ export default class index extends Component {
               onClick={this.props.handleClickChart}>
               Charts
             </a>
+            <h1 className="f5 fw4 mt0 mb0 white-60">चार्ट</h1>
+
             <h2 className="f6 fw4 mt0 mb0 white-60">Visualize the data</h2>
           </div>
         </article>
@@ -37,6 +40,8 @@ export default class index extends Component {
               onClick={this.props.handleClickIssues}>
               Issues
             </a>
+            <h1 className="f5 fw4 mt0 mb0 white-60">मुद्दे</h1>
+
             <h2 className="f6 fw4 mt0 mb0 white-60">
               View all the issues in one place
             </h2>
@@ -49,6 +54,8 @@ export default class index extends Component {
               onClick={this.props.handleClickDownload}>
               Download Data
             </a>
+            <h1 className="f5 fw4 mt0 mb0 white-60">डेटा डाउनलोड करें</h1>
+
             <h2 className="f6 fw4 mt0 mb0 white-60">Download details in csv</h2>
           </div>
         </article>

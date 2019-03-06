@@ -1,6 +1,16 @@
 import React, { Component } from "react";
 import SidePanel from "../SidePanel";
 import StpOverview from "./StpOverview";
+import Demo from "./Chart/demo";
+import Issue from "./Issues";
+
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
+// import "../Map/Overview.css";
 
 export default class StpDash extends Component {
   constructor(props) {
@@ -71,12 +81,43 @@ export default class StpDash extends Component {
             handleClickIssues={this.handleClickIssues.bind(this)}
           />
         </div>
-        {this.state.overview ? <StpOverview /> : null}
+        <div className="mt0 fn fr-ns w-75-ns pr4-ns" />
+        {this.state.overview ? (
+          <div className="mt0 fn fr-ns w-75-ns pr4-ns">
+            <Paper className="mr4">
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Name</TableCell>
+                    <TableCell>State</TableCell>
+                    <TableCell>Capacity</TableCell>
+                    <TableCell>Technology Used</TableCell>
+                    <TableCell>Operational</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  <TableRow>
+                    <TableCell>Haridwar</TableCell>
+                    <TableCell>Uttarakhand</TableCell>
+                    <TableCell>24 MLD</TableCell>
+                    <TableCell>ASP</TableCell>
+                    <TableCell>YES</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Paper>
+            <StpOverview />
+          </div>
+        ) : null}
         {this.state.charts ? (
-          <div className="fn fl-ns w-75-ns">charts</div>
+          <div className="fn fl-ns w-75-ns">
+            <Demo />
+          </div>
         ) : null}
         {this.state.issue ? (
-          <div className="fn fl-ns w-75-ns">issues</div>
+          <div className="fn fl-ns w-75-ns">
+            <Issue />
+          </div>
         ) : null}
         {this.state.download ? (
           <div className="fn fl-ns w-75-ns">download</div>

@@ -15,6 +15,9 @@ import "tachyons";
 import "./styles/vendor/normalize.css";
 import MapEasy from "./components/Map/Map";
 import StpDash from "./components/StpDash/StpDash";
+import MapHindi from "./components/Map/MapHindi";
+
+import OpDash from "./components/Operator/OpDash";
 
 render(
   <Router>
@@ -27,7 +30,9 @@ render(
         <Switch>
           <Route exact path="/signin" component={SignIn} />
           <Route exact path="/map" component={MapEasy} />
+          <Route exact path="/map_hindi" component={MapHindi} />
           <Route exact path="/stp_dash" component={StpDash} />
+          <Route exact path="/operator_dash" component={OpDash} />
           <Route component={NotFound} />
         </Switch>
       </App>
